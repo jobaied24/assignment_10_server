@@ -44,6 +44,13 @@ async function run() {
     res.send(result)
     })
 
+    app.get('/task/email/:email',async(req,res)=>{
+      const email=req.params.email;
+      const query={email:email}
+      const result=await taskCollection.find(query).toArray();
+      res.send(result);
+    })
+
     app.post('/task',async(req,res)=>{
       const taskData=req.body;
       const result=await taskCollection.insertOne(taskData);
