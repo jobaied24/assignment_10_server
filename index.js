@@ -34,7 +34,10 @@ async function run() {
     
     app.get('/task',async(req,res)=>{
       const limit=parseInt(req.query.limit);
-      const result=await taskCollection.find().limit(limit).toArray();
+      const result=await taskCollection.find()
+      .limit(limit)
+      .sort({deadline:1})
+      .toArray();
       res.send(result);
     })
 
